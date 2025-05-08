@@ -6,7 +6,7 @@ const config: Config = {
   rootDir: "src",
   resolver: "ts-jest-resolver",
   coverageDirectory: "../coverage",
-  coverageReporters: ["text", "html"],
+  coverageReporters: ["text", "html", "lcov"],
   coverageProvider: "v8",
   collectCoverageFrom: [
     "**/*.ts",

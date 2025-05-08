@@ -1,0 +1,21 @@
+name: Testing
+
+on: push
+
+jobs:
+  test:
+    name: Tests passes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇ Git checkout
+        uses: actions/checkout@v4
+
+      - name: 💾 Install modules
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: 🧪 Testing
+        run: npm test

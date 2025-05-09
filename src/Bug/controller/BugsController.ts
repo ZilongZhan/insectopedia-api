@@ -5,7 +5,7 @@ import { BugsControllerStructure, BugsRequest } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
 
 class BugsController implements BugsControllerStructure {
-  constructor(private bugModel: Model<BugStructure>) {}
+  constructor(private readonly bugModel: Model<BugStructure>) {}
 
   public getBugs = async (req: BugsRequest, res: Response): Promise<void> => {
     let { pageNumber } = req.query;

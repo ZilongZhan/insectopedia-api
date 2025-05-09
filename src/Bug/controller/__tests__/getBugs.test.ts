@@ -2,7 +2,6 @@ import { Response } from "express";
 import { Model, Query } from "mongoose";
 import statusCodes from "../../../globals/statusCodes.js";
 import { BugStructure } from "../../types.js";
-import { BugsRequest } from "../types.js";
 import BugsController from "../BugsController.js";
 import {
   insect1,
@@ -16,6 +15,7 @@ import {
   insect8,
   insect9,
 } from "../../fixtures.js";
+import { BugsRequest } from "../../../server/types.js";
 
 describe("Given the getBugs method of BugsController", () => {
   const res = {
@@ -57,7 +57,7 @@ describe("Given the getBugs method of BugsController", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the response's json method with recipes 1 to 5", async () => {
+    test("Then it should call the response's json method with insects 1 to 5", async () => {
       await bugsController.getBugs(req as BugsRequest, res as Response);
 
       expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ bugs }));
@@ -73,18 +73,14 @@ describe("Given the getBugs method of BugsController", () => {
   });
 
   describe("When it receives a request with pageNumber 2 and a response", () => {
-    test("Then it should call the reponse's json method with recipes 6 to 10", async () => {
+    test("Then it should call the reponse's json method with insects 6 to 10", async () => {
       const bugs = [insect6, insect7, insect8, insect9, insect10];
 
       const query = {
-        sort: jest.fn().mockReturnThis(),
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         exec: jest.fn().mockReturnValue(bugs),
-      } as Pick<
-        Query<BugStructure[], BugStructure>,
-        "sort" | "skip" | "limit" | "exec"
-      >;
+      } as Pick<Query<BugStructure[], BugStructure>, "skip" | "limit" | "exec">;
 
       const bugModel = {
         find: jest.fn().mockReturnValue(query),

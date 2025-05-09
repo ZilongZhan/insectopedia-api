@@ -1,11 +1,6 @@
-import { Request, Response } from "express";
+import { Response } from "express";
+import { BugsRequest } from "../../server/types.js";
 
 export interface BugsControllerStructure {
   getBugs: (req: BugsRequest, res: Response) => Promise<void>;
 }
-
-interface BugsQuery {
-  pageNumber: string;
-}
-
-export type BugsRequest = Request<unknown, unknown, unknown, BugsQuery>;

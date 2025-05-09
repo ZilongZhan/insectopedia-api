@@ -8,7 +8,10 @@ import { BugsRequest } from "../../server/types.js";
 class BugsController implements BugsControllerStructure {
   constructor(private readonly bugModel: Model<BugStructure>) {}
 
-  public getBugs = async (req: BugsRequest, res: Response): Promise<void> => {
+  public getBugsData = async (
+    req: BugsRequest,
+    res: Response,
+  ): Promise<void> => {
     let { pageNumber } = req.query;
 
     if (!pageNumber) {

@@ -17,7 +17,7 @@ import {
 } from "../../fixtures.js";
 import { BugsRequest } from "../../../server/types.js";
 
-describe("Given the getBugs method of BugsController", () => {
+describe("Given the getBugsData method of BugsController", () => {
   const res = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
@@ -52,19 +52,19 @@ describe("Given the getBugs method of BugsController", () => {
     test("Then it should call the response's status method with status code 200", async () => {
       const expectedStatusCode = statusCodes.OK;
 
-      await bugsController.getBugs(req as BugsRequest, res as Response);
+      await bugsController.getBugsData(req as BugsRequest, res as Response);
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
     test("Then it should call the response's json method with insects 1 to 5", async () => {
-      await bugsController.getBugs(req as BugsRequest, res as Response);
+      await bugsController.getBugsData(req as BugsRequest, res as Response);
 
       expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ bugs }));
     });
 
     test("Then it should call the response's json method with 16 total bugs", async () => {
-      await bugsController.getBugs(req as BugsRequest, res as Response);
+      await bugsController.getBugsData(req as BugsRequest, res as Response);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({ bugsTotal }),
@@ -97,7 +97,7 @@ describe("Given the getBugs method of BugsController", () => {
         },
       } as Pick<BugsRequest, "query">;
 
-      await bugsController.getBugs(req as BugsRequest, res as Response);
+      await bugsController.getBugsData(req as BugsRequest, res as Response);
 
       expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ bugs }));
     });

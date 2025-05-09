@@ -6,6 +6,6 @@ const bugsRouter = Router();
 
 const bugsController = new BugsController(Bug);
 
-bugsRouter.get("/", bugsController.getBugs);
+bugsRouter.get("/", bugsController.getBugsData);
 
 export default bugsRouter;

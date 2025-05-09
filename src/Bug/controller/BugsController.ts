@@ -1,8 +1,9 @@
 import { Model } from "mongoose";
 import { Response } from "express";
 import { BugStructure } from "../types.js";
-import { BugsControllerStructure, BugsRequest } from "./types.js";
+import { BugsControllerStructure } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
+import { BugsRequest } from "../../server/types.js";
 
 class BugsController implements BugsControllerStructure {
   constructor(private readonly bugModel: Model<BugStructure>) {}

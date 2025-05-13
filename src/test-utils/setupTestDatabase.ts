@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import connectToDatabase from "../database/connectToDatabase.js";
-import Bug from "../Bug/model/Bug.js";
-import { insect1, insect2 } from "../Bug/fixtures.js";
+import Bug from "../bug/model/Bug.js";
+import { insect1, insect2 } from "../bug/fixtures.js";
 
 const setupTestDatabase = (): void => {
   let database: MongoMemoryServer;

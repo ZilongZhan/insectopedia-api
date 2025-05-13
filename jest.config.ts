@@ -16,6 +16,7 @@ const config: Config = {
     "!**/startServer.ts",
     "!**/connectToDatabase.ts",
     "!**/setupTestDatabase.ts",
+    "!**/handleCors.ts",
   ],
   ...createDefaultPreset(),
 };

@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { BugStructure } from "../Bug/types.js";
+import { BugStructure } from "../bug/types.js";
 
 interface BugsQuery {
   pageNumber: string;

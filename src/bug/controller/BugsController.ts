@@ -22,7 +22,7 @@ class BugsController implements BugsControllerStructure {
     const startIndex = (Number(pageNumber) - 1) * bugsLimit;
 
     const bugs = await this.bugModel
-      .find<BugStructure>({})
+      .find<BugStructure>()
       .skip(startIndex)
       .limit(bugsLimit)
       .exec();

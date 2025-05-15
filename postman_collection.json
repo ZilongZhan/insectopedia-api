@@ -1,0 +1,48 @@
+{
+  "info": {
+    "_postman_id": "450d66fe-4724-4339-be24-c1201d8e2283",
+    "name": "Insectopedia API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get all bugs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bugs?pageNumber=1",
+          "host": ["{{base_url}}"],
+          "path": ["bugs"],
+          "query": [
+            {
+              "key": "pageNumber",
+              "value": "1",
+              "description": "Page number for pagination (optional, default: 1)"
+            }
+          ]
+        },
+        "description": "Get a paginated list of bugs. Optional query param: pageNumber."
+      }
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        },
+        "description": "API health check. Returns { \"message\": \"OK\" }."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://zilong-zhan-202502-back.onrender.com"
+    }
+  ]
+}

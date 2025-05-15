@@ -1,6 +1,9 @@
 import { Response } from "express";
-import { BugsRequest } from "../../server/types.js";
+import { BugsDataResponse, BugsRequest } from "../../server/types.js";
 
 export interface BugsControllerStructure {
-  getBugsData: (req: BugsRequest, res: Response) => Promise<void>;
+  getBugsData: (
+    req: BugsRequest,
+    res: Response<BugsDataResponse>,
+  ) => Promise<void>;
 }

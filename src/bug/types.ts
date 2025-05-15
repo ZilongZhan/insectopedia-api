@@ -9,3 +9,8 @@ export interface BugStructure {
   phylum: string;
   order: string;
 }
+
+export interface BugsInfo {
+  bugs: BugStructure[];
+  bugsTotal: number;
+}

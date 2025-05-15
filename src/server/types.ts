@@ -5,7 +5,12 @@ interface BugsQuery {
   pageNumber: string;
 }
 
-export type BugsRequest = Request<unknown, unknown, unknown, BugsQuery>;
+export type BugsRequest = Request<
+  Record<string, unknown>,
+  unknown,
+  Record<string, unknown>,
+  BugsQuery
+>;
 
 export interface ErrorResponse {
   error: string;

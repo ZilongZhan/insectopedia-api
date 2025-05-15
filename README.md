@@ -1,16 +1,45 @@
 # Insectopedia API
 
-Insectopedia API is a Node.js and Express-based API server designed to provide information about insects. This project is built with TypeScript and includes a development environment for easy setup and deployment.
+Insectopedia API is a Node.js, Express, and TypeScript-based RESTful API for managing and retrieving insect data. It features a modular, scalable architecture, robust error handling, and a modern development workflow with testing, linting, and CI/CD support.
 
 ## Features
 
-- RESTful API for managing insect data.
-- Modular and scalable architecture.
+- RESTful API for querying insect data (bugs)
+- MongoDB database integration via Mongoose
+- TypeScript for type safety
+- CORS configuration with environment-based origin patterns
+- Health check and error handling endpoints
+- Extensive unit and integration tests (Jest, Supertest, mongodb-memory-server)
+- Prettier, ESLint, and Husky for code quality
+- GitHub Actions for CI, code audit, and SonarCloud analysis
+
+## Project Structure
+
+```
+
+src/
+  bug/
+    controller/
+    model/
+    router/
+    fixtures.ts
+    types.ts
+  database/
+  globals/
+  server/
+    middlewares/
+    __tests__/
+    ServerError/
+    types.ts
+  test-utils/
+  env.d.ts
+  index.ts
+```
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 14 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [npm](https://www.npmjs.com/)
 
 ## Installation
 
@@ -22,15 +51,29 @@ Insectopedia API is a Node.js and Express-based API server designed to provide i
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
+3. Copy the environment variables template and fill in your values:
+
+   ```bash
+   cp .env.sample .env
+   ```
+
+   Example `.env`:
+
+   ```
+   PORT=3001
+   DEBUG=insectopedia:*
+   DB_URI=mongodb://localhost:27017/insectopedia
+   ALLOWED_ORIGIN_PATTERNS=http://localhost
+   ```
+
 ## Usage
 
-### Start server
-
-Start the server:
+### Start the server (need to build before starting)
 
 ```bash
 npm start
@@ -38,9 +81,73 @@ npm start
 
 The API will be available at `http://localhost:3001` by default.
 
+### Development mode (with auto-reload)
+
+```bash
+npm run start:dev
+```
+
+### Build the project
+
+```bash
+npm run build
+```
+
+### Run tests
+
+```bash
+npm test
+```
+
+- For coverage: `npm run test:coverage`
+- For watch mode: `npm run test:dev`
+
+## API Endpoints
+
+- `GET /`
+  Health check endpoint. Returns `{ "message": "OK" }`.
+
+- `GET /bugs`
+  Returns a paginated list of insects.
+  Query params:
+
+  - `pageNumber` (optional, default: 1)
+
+  Example response:
+
+  ```json
+  {
+    "bugs": [
+      {
+        "commonName": "Insect One",
+        "latinName": "Insecta unius",
+        "class": "Insecta",
+        "description": "Description for insect one.",
+        "imageUrl": "https://example.com/insect1.jpg",
+        "isDangerous": false,
+        "isFavorite": true,
+        "order": "OrderOne",
+        "phylum": "Arthropoda"
+      }
+    ],
+    "bugsTotal": 16
+  }
+  ```
+
+## Code Quality & CI
+
+- **Linting:**
+  Run `npx eslint src --max-warnings 0`
+- **Formatting:**
+  Run `npx prettier --write .`
+- **Pre-commit hooks:**
+  Managed by Husky and lint-staged
+- **CI/CD:**
+  Automated tests and code audit via GitHub Actions ([.github/workflows/](.github/workflows/))
+
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the ISC License.
 
 ## Contact
 

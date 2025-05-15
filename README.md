@@ -16,7 +16,6 @@ Insectopedia API is a Node.js, Express, and TypeScript-based RESTful API for man
 ## Project Structure
 
 ```
-
 src/
   bug/
     controller/
@@ -133,6 +132,11 @@ npm test
     "bugsTotal": 16
   }
   ```
+
+## Postman Collection
+
+You can find example requests for this API in the included [Postman collection](../postman_collection.json).  
+Import this file into Postman to quickly test the available endpoints.
 
 ## Code Quality & CI
 

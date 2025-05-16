@@ -1,14 +1,19 @@
 import { Request } from "express";
 import { BugStructure } from "../bug/types.js";
+import { BugDataDto } from "../bug/dto/types.js";
 
 interface BugsQuery {
   pageNumber: string;
 }
 
+interface BugsBody {
+  bugData: BugDataDto;
+}
+
 export type BugsRequest = Request<
   Record<string, unknown>,
   unknown,
-  Record<string, unknown>,
+  BugsBody,
   BugsQuery
 >;
 
@@ -19,4 +24,8 @@ export interface ErrorResponse {
 export interface BugsDataResponse {
   bugs: BugStructure[];
   bugsTotal: number;
+}
+
+export interface BugResponse {
+  bug: BugStructure;
 }

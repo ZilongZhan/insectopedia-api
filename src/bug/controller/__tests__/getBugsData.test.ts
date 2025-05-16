@@ -17,6 +17,10 @@ import {
 } from "../../fixtures.js";
 import { BugsRequest } from "../../../server/types.js";
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Given the getBugsData method of BugsController", () => {
   const res = {
     status: jest.fn().mockReturnThis(),
@@ -24,10 +28,6 @@ describe("Given the getBugsData method of BugsController", () => {
   } as Pick<Response, "status" | "json">;
 
   const bugsTotal = 16;
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
 
   describe("When it receives a request and a response", () => {
     const bugs = [insect1, insect2, insect3, insect4, insect5];

@@ -8,4 +8,6 @@ const bugsController = new BugsController(Bug);
 
 bugsRouter.get("/", bugsController.getBugsData);
 
+bugsRouter.post("/", bugsController.addBug);
+
 export default bugsRouter;

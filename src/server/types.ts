@@ -6,7 +6,7 @@ interface BugsQuery {
   pageNumber: string;
 }
 
-interface BugsBody {
+export interface BugsBody {
   bugData: BugDataDto;
 }
 

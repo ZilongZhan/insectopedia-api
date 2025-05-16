@@ -95,6 +95,8 @@ describe("Given the addBug method of BugsController", () => {
 
   describe("When it receives a request with insect 3 with invalid name 'A', and a next function", () => {
     test("Then it should call the next function with error 400 'Bug validation failed: commonName: Minimum 3 characters required'", async () => {
+      const invalidBugName = "A";
+
       const expectedError = new ServerError(
         statusCodes.BAD_REQUEST,
         "Bug validation failed: commonName: Minimum 3 characters required",
@@ -113,7 +115,7 @@ describe("Given the addBug method of BugsController", () => {
 
       const insectDataDto3WithInvalidName: BugDataDto = {
         ...insectDataDto3,
-        name: "A",
+        name: invalidBugName,
       };
 
       const req = {

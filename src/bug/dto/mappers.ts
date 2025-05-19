@@ -4,7 +4,9 @@ import { BugDataDto } from "./types.js";
 export const mapBugDataDtoToBugData = ({
   name,
   scientificName,
-  taxonomy: [phylum, className, order],
+  phylum,
+  className,
+  order,
   ...rest
 }: BugDataDto): BugData => ({
   ...rest,

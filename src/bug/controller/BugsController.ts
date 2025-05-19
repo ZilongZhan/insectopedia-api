@@ -29,6 +29,7 @@ class BugsController implements BugsControllerStructure {
 
     const bugs = await this.bugModel
       .find<BugStructure>()
+      .sort({ _id: "descending" })
       .skip(startIndex)
       .limit(bugsLimit)
       .exec();

@@ -10,4 +10,8 @@ export type BugDto = Omit<
   taxonomy: [phylum: string, className: string, order: string];
 };
 
-export type BugDataDto = Omit<BugDto, "id">;
+export type BugDataDto = Omit<BugDto, "id" | "taxonomy"> & {
+  phylum: string;
+  className: string;
+  order: string;
+};

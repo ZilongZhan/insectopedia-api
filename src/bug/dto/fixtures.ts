@@ -3,7 +3,9 @@ import { BugDataDto } from "./types.js";
 export const insectDataDto1: BugDataDto = {
   name: "Insect One",
   scientificName: "Insecta unius",
-  taxonomy: ["Arthropoda", "Insecta", "OrderOne"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderOne",
   description:
     "This is a detailed description for Insect One, explaining its features and behavior.",
   imageUrl: "https://example.com/insect1.jpg",
@@ -14,7 +16,9 @@ export const insectDataDto1: BugDataDto = {
 export const insectDataDto2: BugDataDto = {
   name: "Insect Two",
   scientificName: "Insecta duo",
-  taxonomy: ["Arthropoda", "Insecta", "OrderTwo"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderTwo",
   description:
     "This is a detailed description for Insect Two, explaining its features and behavior.",
   imageUrl: "https://example.com/insect2.jpg",
@@ -25,7 +29,9 @@ export const insectDataDto2: BugDataDto = {
 export const insectDataDto3: BugDataDto = {
   name: "Insect Three",
   scientificName: "Insecta tres",
-  taxonomy: ["Arthropoda", "Insecta", "OrderThree"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderThree",
   description:
     "This is a detailed description for Insect Three, explaining its features and behavior.",
   imageUrl: "https://example.com/insect3.jpg",
@@ -36,7 +42,9 @@ export const insectDataDto3: BugDataDto = {
 export const insectDataDto4: BugDataDto = {
   name: "Insect Four",
   scientificName: "Insecta quattuor",
-  taxonomy: ["Arthropoda", "Insecta", "OrderFour"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderFour",
   description:
     "This is a detailed description for Insect Four, explaining its features and behavior.",
   imageUrl: "https://example.com/insect4.jpg",
@@ -47,7 +55,9 @@ export const insectDataDto4: BugDataDto = {
 export const insectDataDto5: BugDataDto = {
   name: "Insect Five",
   scientificName: "Insecta quinque",
-  taxonomy: ["Arthropoda", "Insecta", "OrderFive"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderFive",
   description:
     "This is a detailed description for Insect Five, explaining its features and behavior.",
   imageUrl: "https://example.com/insect5.jpg",
@@ -58,7 +68,9 @@ export const insectDataDto5: BugDataDto = {
 export const insectDataDto6: BugDataDto = {
   name: "Insect Six",
   scientificName: "Insecta sex",
-  taxonomy: ["Arthropoda", "Insecta", "OrderSix"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderSix",
   description:
     "This is a detailed description for Insect Six, explaining its features and behavior.",
   imageUrl: "https://example.com/insect6.jpg",
@@ -69,7 +81,9 @@ export const insectDataDto6: BugDataDto = {
 export const insectDataDto7: BugDataDto = {
   name: "Insect Seven",
   scientificName: "Insecta septem",
-  taxonomy: ["Arthropoda", "Insecta", "OrderSeven"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderSeven",
   description:
     "This is a detailed description for Insect Seven, explaining its features and behavior.",
   imageUrl: "https://example.com/insect7.jpg",
@@ -80,7 +94,9 @@ export const insectDataDto7: BugDataDto = {
 export const insectDataDto8: BugDataDto = {
   name: "Insect Eight",
   scientificName: "Insecta octo",
-  taxonomy: ["Arthropoda", "Insecta", "OrderEight"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderEight",
   description:
     "This is a detailed description for Insect Eight, explaining its features and behavior.",
   imageUrl: "https://example.com/insect8.jpg",
@@ -91,7 +107,9 @@ export const insectDataDto8: BugDataDto = {
 export const insectDataDto9: BugDataDto = {
   name: "Insect Nine",
   scientificName: "Insecta novem",
-  taxonomy: ["Arthropoda", "Insecta", "OrderNine"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderNine",
   description:
     "This is a detailed description for Insect Nine, explaining its features and behavior.",
   imageUrl: "https://example.com/insect9.jpg",
@@ -102,7 +120,9 @@ export const insectDataDto9: BugDataDto = {
 export const insectDataDto10: BugDataDto = {
   name: "Insect Ten",
   scientificName: "Insecta decem",
-  taxonomy: ["Arthropoda", "Insecta", "OrderTen"],
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "OrderTen",
   description:
     "This is a detailed description for Insect Ten, explaining its features and behavior.",
   imageUrl: "https://example.com/insect10.jpg",

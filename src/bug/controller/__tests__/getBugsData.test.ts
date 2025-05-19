@@ -33,6 +33,7 @@ describe("Given the getBugsData method of BugsController", () => {
     const bugs = [insect1, insect2, insect3, insect4, insect5];
 
     const query = {
+      sort: jest.fn().mockReturnThis(),
       skip: jest.fn().mockReturnThis(),
       limit: jest.fn().mockReturnThis(),
       exec: jest.fn().mockReturnValue(bugs),
@@ -77,6 +78,7 @@ describe("Given the getBugsData method of BugsController", () => {
       const bugs = [insect6, insect7, insect8, insect9, insect10];
 
       const query = {
+        sort: jest.fn().mockReturnThis(),
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         exec: jest.fn().mockReturnValue(bugs),

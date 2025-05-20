@@ -78,6 +78,31 @@ class BugsController implements BugsControllerStructure {
       return;
     }
   };
+
+  public deleteBugById = async (
+    req: BugsRequest,
+    res: Response<BugResponse>,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { id } = req.params;
+
+    const bugExists = await this.bugModel.exists({ _id: id });
+
+    if (!bugExists) {
+      const error = new ServerError(
+        statusCodes.NOT_FOUND,
+        `Bug with ID '${id}' doesn't exist`,
+      );
+
+      next(error);
+
+      return;
+    }
+
+    const bug = (await this.bugModel.findByIdAndDelete(id)) as BugStructure;
+
+    res.status(statusCodes.OK).json({ bug });
+  };
 }
 
 export default BugsController;

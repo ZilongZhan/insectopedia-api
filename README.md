@@ -122,7 +122,7 @@ npm test
         "latinName": "Insecta unius",
         "class": "Insecta",
         "description": "Description for insect one.",
-        "imageUrl": "https://example.com/insect1.jpg",
+        "imageUrl": "This is a detailed description for Insect One, explaining its features and behavior.",
         "isDangerous": false,
         "isFavorite": true,
         "order": "OrderOne",
@@ -135,7 +135,7 @@ npm test
 
 ## Postman Collection
 
-You can find example requests for this API in the included [Postman collection](../postman_collection.json).  
+You can find example requests for this API in the included [Postman collection](../postman_collection.json).
 Import this file into Postman to quickly test the available endpoints.
 
 ## Code Quality & CI

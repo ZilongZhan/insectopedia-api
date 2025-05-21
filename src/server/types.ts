@@ -10,12 +10,11 @@ export interface BugsBody {
   bugData: BugDataDto;
 }
 
-export type BugsRequest = Request<
-  Record<string, unknown>,
-  unknown,
-  BugsBody,
-  BugsQuery
->;
+interface BugsParams {
+  id: string;
+}
+
+export type BugsRequest = Request<BugsParams, unknown, BugsBody, BugsQuery>;
 
 export interface ErrorResponse {
   error: string;

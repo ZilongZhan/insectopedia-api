@@ -9,7 +9,8 @@ const handleCors = cors({
       return callback(null, true);
     }
 
-    const allowedOriginPatterns = process.env.ALLOWED_ORIGIN_PATTERNS;
+    const allowedOriginPatterns =
+      process.env.ALLOWED_ORIGIN_PATTERNS?.split(",");
 
     if (!allowedOriginPatterns) {
       const error = new Error("Allowed origin patterns not defined");
@@ -17,9 +18,7 @@ const handleCors = cors({
       return callback(error, false);
     }
 
-    const origins = allowedOriginPatterns.split(",");
-
-    const isAllowedOrigin = origins.some((thisOrigin) =>
+    const isAllowedOrigin = allowedOriginPatterns.some((thisOrigin) =>
       origin?.includes(thisOrigin),
     );
 

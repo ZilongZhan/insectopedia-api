@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 import { NextFunction, Response } from "express";
 import { BugStructure } from "../types.js";
 import { BugsControllerStructure } from "./types.js";
@@ -14,6 +14,13 @@ import { mapBugDataDtoToBugData } from "../dto/mappers.js";
 class BugsController implements BugsControllerStructure {
   constructor(private readonly bugModel: Model<BugStructure>) {}
 
+  private doesBugExist = async (
+    key: string,
+    value: unknown,
+  ): Promise<{ _id: Types.ObjectId } | null> => {
+    return await this.bugModel.exists({ [key]: value });
+  };
+
   public getBugsData = async (
     req: BugsRequest,
     res: Response<BugsDataResponse>,
@@ -24,14 +31,14 @@ class BugsController implements BugsControllerStructure {
       pageNumber = "1";
     }
 
-    const bugsLimit = 16;
-    const startIndex = (Number(pageNumber) - 1) * bugsLimit;
+    const bugsPerPage = 16;
+    const startIndex = (Number(pageNumber) - 1) * bugsPerPage;
 
     const bugs = await this.bugModel
       .find<BugStructure>()
       .sort({ _id: "descending" })
       .skip(startIndex)
-      .limit(bugsLimit)
+      .limit(bugsPerPage)
       .exec();
 
     const bugsTotal = await this.bugModel.countDocuments();
@@ -46,9 +53,7 @@ class BugsController implements BugsControllerStructure {
   ): Promise<void> => {
     const { bugData: bugDataDto } = req.body;
 
-    const bugExists = await this.bugModel.exists({
-      commonName: bugDataDto.name,
-    });
+    const bugExists = await this.doesBugExist("commonName", bugDataDto.name);
 
     if (bugExists) {
       const error = new ServerError(
@@ -86,7 +91,7 @@ class BugsController implements BugsControllerStructure {
   ): Promise<void> => {
     const { id } = req.params;
 
-    const bugExists = await this.bugModel.exists({ _id: id });
+    const bugExists = await this.doesBugExist("_id", id);
 
     if (!bugExists) {
       const error = new ServerError(
@@ -100,6 +105,31 @@ class BugsController implements BugsControllerStructure {
     }
 
     const bug = (await this.bugModel.findByIdAndDelete(id)) as BugStructure;
+
+    res.status(statusCodes.OK).json({ bug });
+  };
+
+  public getBugById = async (
+    req: BugsRequest,
+    res: Response<BugResponse>,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { id } = req.params;
+
+    const bugExists = await this.doesBugExist("_id", id);
+
+    if (!bugExists) {
+      const error = new ServerError(
+        statusCodes.NOT_FOUND,
+        `Bug with ID '${id}' doesn't exist`,
+      );
+
+      next(error);
+
+      return;
+    }
+
+    const bug = (await this.bugModel.findById(id)) as BugStructure;
 
     res.status(statusCodes.OK).json({ bug });
   };

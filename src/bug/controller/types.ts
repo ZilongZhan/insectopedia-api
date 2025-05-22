@@ -20,4 +20,9 @@ export interface BugsControllerStructure {
     res: Response<BugResponse>,
     next: NextFunction,
   ) => Promise<void>;
+  getBugById: (
+    req: BugsRequest,
+    res: Response<BugResponse>,
+    next: NextFunction,
+  ) => Promise<void>;
 }

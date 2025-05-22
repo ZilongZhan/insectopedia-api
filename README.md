@@ -4,7 +4,7 @@ Insectopedia API is a Node.js, Express, and TypeScript-based RESTful API for man
 
 ## Features
 
-- RESTful API for querying insect data (bugs)
+- RESTful API for querying, creating, updating, and deleting insect data (bugs)
 - MongoDB database integration via Mongoose
 - TypeScript for type safety
 - CORS configuration with environment-based origin patterns
@@ -12,6 +12,7 @@ Insectopedia API is a Node.js, Express, and TypeScript-based RESTful API for man
 - Extensive unit and integration tests (Jest, Supertest, mongodb-memory-server)
 - Prettier, ESLint, and Husky for code quality
 - GitHub Actions for CI, code audit, and SonarCloud analysis
+- Ready-to-use Postman collection for API testing
 
 ## Project Structure
 
@@ -23,6 +24,9 @@ src/
     router/
     fixtures.ts
     types.ts
+    dto/
+      fixtures.ts
+      types.ts
   database/
   globals/
   server/
@@ -33,6 +37,7 @@ src/
   test-utils/
   env.d.ts
   index.ts
+postman_collection.json
 ```
 
 ## Prerequisites
@@ -104,39 +109,55 @@ npm test
 ## API Endpoints
 
 - `GET /`
-  Health check endpoint. Returns `{ "message": "OK" }`.
+
+  - Health check endpoint. Returns `{ "message": "OK" }`.
 
 - `GET /bugs`
-  Returns a paginated list of insects.
-  Query params:
 
-  - `pageNumber` (optional, default: 1)
+  - Returns a paginated list of insects.
+  - Query params:
+    - `pageNumber` (optional, default: 1)
 
-  Example response:
+- `GET /bugs/:id`
 
-  ```json
-  {
-    "bugs": [
-      {
-        "commonName": "Insect One",
-        "latinName": "Insecta unius",
-        "class": "Insecta",
-        "description": "Description for insect one.",
-        "imageUrl": "This is a detailed description for Insect One, explaining its features and behavior.",
-        "isDangerous": false,
-        "isFavorite": true,
-        "order": "OrderOne",
-        "phylum": "Arthropoda"
-      }
-    ],
-    "bugsTotal": 16
-  }
-  ```
+  - Returns a single bug by its ID.
+
+- `POST /bugs`
+
+  - Create a new bug. Requires a JSON body matching the bug schema.
+
+- `PUT /bugs/:id`
+
+  - Update an existing bug by ID. Requires a JSON body.
+
+- `DELETE /bugs/:id`
+  - Delete a bug by its ID.
+
+Example response for `GET /bugs`:
+
+```json
+{
+  "bugs": [
+    {
+      "commonName": "Insect One",
+      "latinName": "Insecta unius",
+      "class": "Insecta",
+      "description": "Description for insect one.",
+      "imageUrl": "https://example.com/insect1.jpg",
+      "isDangerous": false,
+      "isFavorite": true,
+      "order": "OrderOne",
+      "phylum": "Arthropoda"
+    }
+  ],
+  "bugsTotal": 16
+}
+```
 
 ## Postman Collection
 
-You can find example requests for this API in the included [Postman collection](../postman_collection.json).
-Import this file into Postman to quickly test the available endpoints.
+You can find example requests for this API in the included [Postman collection](./postman_collection.json).
+Import this file into Postman to quickly test all available endpoints, including create, update, and delete operations.
 
 ## Code Quality & CI
 

@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
+import { Response } from "express";
 import { insect1, insect2 } from "../../fixtures.js";
 import { BugStructure } from "../../types.js";
 import BugsController from "../BugsController.js";
 import { BugResponse, BugsRequest } from "../../../server/types.js";
-import { Response } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
 import ServerError from "../../../server/ServerError/ServerError.js";
 

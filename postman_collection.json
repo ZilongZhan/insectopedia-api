@@ -26,6 +26,76 @@
       }
     },
     {
+      "name": "Get bug by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bugs/{{bugId}}",
+          "host": ["{{base_url}}"],
+          "path": ["bugs", "{{bugId}}"]
+        },
+        "description": "Get a single bug by its ID."
+      }
+    },
+    {
+      "name": "Create bug",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"commonName\": \"Example Bug\",\n  \"latinName\": \"Exampleus bugus\",\n  \"phylum\": \"Arthropoda\",\n  \"class\": \"Insecta\",\n  \"order\": \"Coleoptera\",\n  \"description\": \"A sample bug for testing. (description should have minimum 50 characters)\",\n  \"imageUrl\": \"https://example.com/bug.jpg\",\n  \"isDangerous\": false,\n  \"isFavorite\": false\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/bugs",
+          "host": ["{{base_url}}"],
+          "path": ["bugs"]
+        },
+        "description": "Create a new bug."
+      }
+    },
+    {
+      "name": "Update bug",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"commonName\": \"Updated Bug\",\n  \"latinName\": \"Updatedus bugus\",\n  \"phylum\": \"Arthropoda\",\n  \"class\": \"Insecta\",\n  \"order\": \"Coleoptera\",\n  \"description\": \"An updated bug for testing.\",\n  \"imageUrl\": \"https://example.com/bug.jpg\",\n  \"isDangerous\": true,\n  \"isFavorite\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/bugs/{{bugId}}",
+          "host": ["{{base_url}}"],
+          "path": ["bugs", "{{bugId}}"]
+        },
+        "description": "Update an existing bug by ID."
+      }
+    },
+    {
+      "name": "Delete bug",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bugs/{{bugId}}",
+          "host": ["{{base_url}}"],
+          "path": ["bugs", "{{bugId}}"]
+        },
+        "description": "Delete a bug by its ID."
+      }
+    },
+    {
       "name": "Health check",
       "request": {
         "method": "GET",
@@ -43,6 +113,10 @@
     {
       "key": "base_url",
       "value": "https://zilong-zhan-202502-back.onrender.com"
+    },
+    {
+      "key": "bugId",
+      "value": "replace-with-existing-bug-id"
     }
   ]
 }

@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
-import { insect1, insect2 } from "../../fixtures.js";
+import { Response } from "express";
 import { BugStructure } from "../../types.js";
+import { insect1, insect2 } from "../../fixtures.js";
 import BugsController from "../BugsController.js";
 import { BugResponse, BugsRequest } from "../../../server/types.js";
-import { Response } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
 import ServerError from "../../../server/ServerError/ServerError.js";
 
@@ -11,7 +11,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe("Given the deleteBugById method of BugsController", () => {
+describe("Given the getBugById method of BugsController", () => {
   const res = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
@@ -20,12 +20,11 @@ describe("Given the deleteBugById method of BugsController", () => {
 
   describe("When it receives a request with Insect One's ID, and a response", () => {
     const bugId = insect1._id.toString();
+
     const bugModel = {
       exists: jest.fn().mockResolvedValue({ _id: insect1._id }),
-      findByIdAndDelete: jest.fn().mockResolvedValue(insect1),
-    } as Pick<Model<BugStructure>, "exists" | "findByIdAndDelete">;
-
-    const bugController = new BugsController(bugModel as Model<BugStructure>);
+      findById: jest.fn().mockResolvedValue(insect1),
+    } as Pick<Model<BugStructure>, "findById" | "exists">;
 
     const req = {
       params: {
@@ -33,8 +32,12 @@ describe("Given the deleteBugById method of BugsController", () => {
       },
     } as Pick<BugsRequest, "params">;
 
-    test("Then it should the response's status method with status code 200", async () => {
-      await bugController.deleteBugById(
+    test("Then it should call the response's status method with status code 200", async () => {
+      const bugsController = new BugsController(
+        bugModel as Model<BugStructure>,
+      );
+
+      await bugsController.getBugById(
         req as BugsRequest,
         res as Response,
         next,
@@ -44,7 +47,11 @@ describe("Given the deleteBugById method of BugsController", () => {
     });
 
     test("Then it should call the response's json method with Insect One", async () => {
-      await bugController.deleteBugById(
+      const bugsController = new BugsController(
+        bugModel as Model<BugStructure>,
+      );
+
+      await bugsController.getBugById(
         req as BugsRequest,
         res as Response,
         next,
@@ -55,7 +62,7 @@ describe("Given the deleteBugById method of BugsController", () => {
   });
 
   describe("When it receives a request with Insect Two's ID which doesn't exist", () => {
-    test(`Then it should call the next function with error 404 'Bug with ID '${insect2._id}' doesn't exist`, async () => {
+    test(`Then it should respond with error 404 'Bug with id '${insect2._id} doesn't exist'`, async () => {
       const bugId = insect2._id.toString();
       const expectedError = new ServerError(
         statusCodes.NOT_FOUND,
@@ -76,7 +83,7 @@ describe("Given the deleteBugById method of BugsController", () => {
         },
       } as Pick<BugsRequest, "params">;
 
-      await bugsController.deleteBugById(
+      await bugsController.getBugById(
         req as BugsRequest,
         res as Response,
         next,

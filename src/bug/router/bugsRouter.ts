@@ -8,9 +8,8 @@ const bugsRouter = Router();
 const bugsController = new BugsController(Bug);
 
 bugsRouter.get("/", bugsController.getBugsData);
-
+bugsRouter.get("/:id", handleValidateId, bugsController.getBugById);
 bugsRouter.post("/", bugsController.addBug);
-
 bugsRouter.delete("/:id", handleValidateId, bugsController.deleteBugById);
 
 export default bugsRouter;

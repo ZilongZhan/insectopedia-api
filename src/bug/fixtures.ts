@@ -5,7 +5,7 @@ export const insect1: BugStructure = {
   _id: new Types.ObjectId("6645a1a1d1e4f1a2b3c4d5e1"),
   commonName: "Insect One",
   latinName: "Insecta unius",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect One, explaining its features and behavior.",
   imageUrl: "https://example.com/insect1.jpg",
@@ -19,7 +19,7 @@ export const insect2: BugStructure = {
   _id: new Types.ObjectId("6645a1a2d1e4f1a2b3c4d5e2"),
   commonName: "Insect Two",
   latinName: "Insecta duo",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Two, explaining its features and behavior.",
   imageUrl: "https://example.com/insect2.jpg",
@@ -33,7 +33,7 @@ export const insect3: BugStructure = {
   _id: new Types.ObjectId("6645a1a3d1e4f1a2b3c4d5e3"),
   commonName: "Insect Three",
   latinName: "Insecta tres",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Three, explaining its features and behavior.",
   imageUrl: "https://example.com/insect3.jpg",
@@ -47,7 +47,7 @@ export const insect4: BugStructure = {
   _id: new Types.ObjectId("6645a1a4d1e4f1a2b3c4d5e4"),
   commonName: "Insect Four",
   latinName: "Insecta quattuor",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Four, explaining its features and behavior.",
   imageUrl: "https://example.com/insect4.jpg",
@@ -61,7 +61,7 @@ export const insect5: BugStructure = {
   _id: new Types.ObjectId("6645a1a5d1e4f1a2b3c4d5e5"),
   commonName: "Insect Five",
   latinName: "Insecta quinque",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Five, explaining its features and behavior.",
   imageUrl: "https://example.com/insect5.jpg",
@@ -75,7 +75,7 @@ export const insect6: BugStructure = {
   _id: new Types.ObjectId("6645a1a6d1e4f1a2b3c4d5e6"),
   commonName: "Insect Six",
   latinName: "Insecta sex",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Six, explaining its features and behavior.",
   imageUrl: "https://example.com/insect6.jpg",
@@ -89,7 +89,7 @@ export const insect7: BugStructure = {
   _id: new Types.ObjectId("6645a1a7d1e4f1a2b3c4d5e7"),
   commonName: "Insect Seven",
   latinName: "Insecta septem",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Seven, explaining its features and behavior.",
   imageUrl: "https://example.com/insect7.jpg",
@@ -103,7 +103,7 @@ export const insect8: BugStructure = {
   _id: new Types.ObjectId("6645a1a8d1e4f1a2b3c4d5e8"),
   commonName: "Insect Eight",
   latinName: "Insecta octo",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Eight, explaining its features and behavior.",
   imageUrl: "https://example.com/insect8.jpg",
@@ -117,7 +117,7 @@ export const insect9: BugStructure = {
   _id: new Types.ObjectId("6645a1a9d1e4f1a2b3c4d5e9"),
   commonName: "Insect Nine",
   latinName: "Insecta novem",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Nine, explaining its features and behavior.",
   imageUrl: "https://example.com/insect9.jpg",
@@ -131,7 +131,7 @@ export const insect10: BugStructure = {
   _id: new Types.ObjectId("6645a1aad1e4f1a2b3c4d5ea"),
   commonName: "Insect Ten",
   latinName: "Insecta decem",
-  class: "Insecta",
+  className: "Insecta",
   description:
     "This is a detailed description for Insect Ten, explaining its features and behavior.",
   imageUrl: "https://example.com/insect10.jpg",

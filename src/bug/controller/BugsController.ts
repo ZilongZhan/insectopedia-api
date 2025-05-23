@@ -14,7 +14,7 @@ import { mapBugDataDtoToBugData } from "../dto/mappers.js";
 class BugsController implements BugsControllerStructure {
   constructor(private readonly bugModel: Model<BugStructure>) {}
 
-  private doesBugExist = async (
+  private readonly doesBugExist = async (
     key: string,
     value: unknown,
   ): Promise<{ _id: Types.ObjectId } | null> => {

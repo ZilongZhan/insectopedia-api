@@ -41,7 +41,7 @@ const BugSchema = new Schema<BugStructure>(
       default: "other",
       required: true,
     },
-    class: {
+    className: {
       type: String,
       default: "other",
       required: true,

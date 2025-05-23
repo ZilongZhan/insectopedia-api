@@ -141,7 +141,7 @@ Example response for `GET /bugs`:
     {
       "commonName": "Insect One",
       "latinName": "Insecta unius",
-      "class": "Insecta",
+      "className": "Insecta",
       "description": "Description for insect one.",
       "imageUrl": "https://example.com/insect1.jpg",
       "isDangerous": false,

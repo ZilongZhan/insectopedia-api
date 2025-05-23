@@ -8,7 +8,7 @@ export interface BugStructure {
   description: string;
   isDangerous: boolean;
   isFavorite: boolean;
-  class: string;
+  className: string;
   phylum: string;
   order: string;
 }

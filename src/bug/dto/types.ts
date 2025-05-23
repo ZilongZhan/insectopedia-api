@@ -2,7 +2,7 @@ import { BugStructure } from "../types.js";
 
 export type BugDto = Omit<
   BugStructure,
-  "_id" | "commonName" | "latinName" | "class" | "phylum" | "order"
+  "_id" | "commonName" | "latinName" | "className" | "phylum" | "order"
 > & {
   id: string;
   name: string;

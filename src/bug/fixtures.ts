@@ -10,7 +10,7 @@ export const insect1: BugStructure = {
     "This is a detailed description for Insect One, explaining its features and behavior.",
   imageUrl: "https://example.com/insect1.jpg",
   isDangerous: false,
-  isFavorite: true,
+  isFavorite: false,
   order: "OrderOne",
   phylum: "Arthropoda",
 };

@@ -133,6 +133,39 @@ class BugsController implements BugsControllerStructure {
 
     res.status(statusCodes.OK).json({ bug });
   };
+
+  public toggleIsFavorite = async (
+    req: BugsRequest,
+    res: Response<BugResponse>,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { id } = req.params;
+
+    const bugExists = await this.doesBugExist("_id", id);
+
+    if (!bugExists) {
+      const error = new ServerError(
+        statusCodes.NOT_FOUND,
+        `Bug with ID '${id}' doesn't exist`,
+      );
+
+      next(error);
+
+      return;
+    }
+
+    const currentBug = (await this.bugModel.findById(id)) as BugStructure;
+
+    const bug = (await this.bugModel.findByIdAndUpdate(
+      id,
+      {
+        isFavorite: !currentBug.isFavorite,
+      },
+      { new: true },
+    )) as BugStructure;
+
+    res.status(statusCodes.OK).json({ bug });
+  };
 }
 
 export default BugsController;

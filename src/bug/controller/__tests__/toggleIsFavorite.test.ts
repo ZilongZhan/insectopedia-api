@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
-import { Response } from "express";
-import { insect1, insect2 } from "../../fixtures.js";
 import { BugStructure } from "../../types.js";
+import { insect1, insect2 } from "../../fixtures.js";
 import BugsController from "../BugsController.js";
-import { BugResponse, BugsRequest } from "../../../server/types.js";
+import { BugsRequest } from "../../../server/types.js";
+import { Response } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
 import ServerError from "../../../server/ServerError/ServerError.js";
 
@@ -11,19 +11,25 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe("Given the deleteBugById method of BugsController", () => {
+describe("Given the toggleIsFavorite method of BugsController", () => {
   const res = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
-  } as Pick<Response<BugResponse>, "status" | "json">;
+  } as Pick<Response, "status" | "json">;
   const next = jest.fn();
 
-  describe("When it receives a request with Insect One's ID, and a response", () => {
+  describe("When it receives a request with Insect One's ID which is not a favorite bug, and a response", () => {
     const bugId = insect1._id.toString();
+    const updatedInsectOne: BugStructure = {
+      ...insect1,
+      isFavorite: !insect1.isFavorite,
+    };
+
     const bugModel = {
       exists: jest.fn().mockResolvedValue({ _id: insect1._id }),
-      findByIdAndDelete: jest.fn().mockResolvedValue(insect1),
-    } as Pick<Model<BugStructure>, "exists" | "findByIdAndDelete">;
+      findById: jest.fn().mockResolvedValue(insect1),
+      findByIdAndUpdate: jest.fn().mockResolvedValue(updatedInsectOne),
+    } as Pick<Model<BugStructure>, "exists" | "findById" | "findByIdAndUpdate">;
 
     const req = {
       params: {
@@ -31,10 +37,12 @@ describe("Given the deleteBugById method of BugsController", () => {
       },
     } as Pick<BugsRequest, "params">;
 
-    test("Then it should the response's status method with status code 200", async () => {
-      const bugController = new BugsController(bugModel as Model<BugStructure>);
+    test("Then it should call the response's status method with status code 200", async () => {
+      const bugsController = new BugsController(
+        bugModel as Model<BugStructure>,
+      );
 
-      await bugController.deleteBugById(
+      await bugsController.toggleIsFavorite(
         req as BugsRequest,
         res as Response,
         next,
@@ -43,20 +51,22 @@ describe("Given the deleteBugById method of BugsController", () => {
       expect(res.status).toHaveBeenCalledWith(statusCodes.OK);
     });
 
-    test("Then it should call the response's json method with Insect One", async () => {
-      const bugController = new BugsController(bugModel as Model<BugStructure>);
+    test("Then it should call the response's json method with Insect One which is a favorite bug", async () => {
+      const bugsController = new BugsController(
+        bugModel as Model<BugStructure>,
+      );
 
-      await bugController.deleteBugById(
+      await bugsController.toggleIsFavorite(
         req as BugsRequest,
         res as Response,
         next,
       );
 
-      expect(res.json).toHaveBeenCalledWith({ bug: insect1 });
+      expect(res.json).toHaveBeenCalledWith({ bug: updatedInsectOne });
     });
   });
 
-  describe("When it receives a request with Insect Two's ID which doesn't exist", () => {
+  describe("When it receives a request with Insect Two's ID which doesn't exist, and a next function", () => {
     test(`Then it should call the next function with error 404 'Bug with ID '${insect2._id}' doesn't exist`, async () => {
       const bugId = insect2._id.toString();
       const expectedError = new ServerError(
@@ -78,7 +88,7 @@ describe("Given the deleteBugById method of BugsController", () => {
         },
       } as Pick<BugsRequest, "params">;
 
-      await bugsController.deleteBugById(
+      await bugsController.toggleIsFavorite(
         req as BugsRequest,
         res as Response,
         next,

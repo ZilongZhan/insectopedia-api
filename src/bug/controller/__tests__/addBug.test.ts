@@ -24,7 +24,7 @@ describe("Given the addBug method of BugsController", () => {
   } as Pick<Response<BugResponse>, "status" | "json">;
   const next = jest.fn();
 
-  describe("When it receives a request with insect 1 data, and a response", () => {
+  describe("When it receives a request with Insect One's data, and a response", () => {
     const bugModel = {
       exists: jest.fn().mockResolvedValue(null),
       create: jest.fn().mockResolvedValue(insect1),
@@ -50,7 +50,7 @@ describe("Given the addBug method of BugsController", () => {
       expect(res.status).toHaveBeenCalledWith(statusCodes.CREATED);
     });
 
-    test("Then it should call the response's json method with insect 1", async () => {
+    test("Then it should call the response's json method with Insect One", async () => {
       const bugsController = new BugsController(
         bugModel as Model<BugStructure>,
       );
@@ -63,7 +63,7 @@ describe("Given the addBug method of BugsController", () => {
     });
   });
 
-  describe("When it receives a request with insect 2 existing data, and a next function", () => {
+  describe("When it receives a request with Insect Two existing data, and a next function", () => {
     test(`Then it should call the next function with error 409 'Bug with name '${insectDataDto2.name}' already exists'`, async () => {
       const bugModel = {
         exists: jest.fn().mockResolvedValue({ _id: insect2._id }),
@@ -90,7 +90,7 @@ describe("Given the addBug method of BugsController", () => {
     });
   });
 
-  describe("When it receives a request with insect 3 with invalid name 'A', and a next function", () => {
+  describe("When it receives a request with Insect 3 with invalid name 'A', and a next function", () => {
     test("Then it should call the next function with error 400 'Bug validation failed: commonName: Minimum 3 characters required'", async () => {
       const invalidBugName = "A";
 

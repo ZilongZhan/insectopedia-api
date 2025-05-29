@@ -96,6 +96,19 @@
       }
     },
     {
+      "name": "Toggle is favorite",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bugs/{{bugId}}",
+          "host": ["{{base_url}}"],
+          "path": ["bugs", "{{bugId}}"]
+        },
+        "description": "Toggle a bug's isFavorite property by its ID."
+      }
+    },
+    {
       "name": "Health check",
       "request": {
         "method": "GET",

@@ -131,7 +131,15 @@ npm test
   - Update an existing bug by ID. Requires a JSON body.
 
 - `DELETE /bugs/:id`
+
   - Delete a bug by its ID.
+
+- `PATCH /bugs/:id/favorite`
+
+  - Toggle or set the "favorite" status of a bug by its ID. Requires a JSON body with `{ "isFavorite": true | false }`.
+
+- `GET /bugs/favorites`
+  - Returns a list of all bugs marked as favorite.
 
 Example response for `GET /bugs`:
 
@@ -157,7 +165,16 @@ Example response for `GET /bugs`:
 ## Postman Collection
 
 You can find example requests for this API in the included [Postman collection](./postman_collection.json).
-Import this file into Postman to quickly test all available endpoints, including create, update, and delete operations.
+
+- **Import this file into Postman** to quickly test all available endpoints, including create, update, and delete operations.
+- The collection covers:
+  - Get all bugs (with pagination)
+  - Get bug by ID
+  - Create bug
+  - Patch bug
+  - Update bug
+  - Delete bug
+  - Health check
 
 ## Code Quality & CI
 

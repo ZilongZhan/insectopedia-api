@@ -173,7 +173,6 @@ class BugsController implements BugsControllerStructure {
     next: NextFunction,
   ): Promise<void> => {
     const { id } = req.params;
-    const { bugData: bugDataDto } = req.body;
 
     const bugExists = await this.doesBugExist("_id", id);
 
@@ -188,6 +187,7 @@ class BugsController implements BugsControllerStructure {
       return;
     }
 
+    const { bugData: bugDataDto } = req.body;
     const bugData = mapBugDataDtoToBugData(bugDataDto);
 
     const bug = (await this.bugModel.findByIdAndUpdate(id, bugData, {

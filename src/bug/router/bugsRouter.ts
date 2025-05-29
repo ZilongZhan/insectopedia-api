@@ -12,5 +12,6 @@ bugsRouter.get("/:id", handleValidateId, bugsController.getBugById);
 bugsRouter.post("/", bugsController.addBug);
 bugsRouter.delete("/:id", handleValidateId, bugsController.deleteBugById);
 bugsRouter.patch("/:id", handleValidateId, bugsController.toggleIsFavorite);
+bugsRouter.put("/:id", handleValidateId, bugsController.editBug);
 
 export default bugsRouter;

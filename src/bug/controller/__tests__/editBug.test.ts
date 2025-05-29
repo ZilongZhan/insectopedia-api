@@ -52,7 +52,7 @@ describe("Given the editBug method of BugsController", () => {
       expect(res.status).toHaveBeenCalledWith(statusCodes.OK);
     });
 
-    test("Then it should call the response's json method with edited Insect One", async () => {
+    test("Then it should call the response's json method with modifed Insect One", async () => {
       const bugsController = new BugsController(
         bugModel as Model<BugStructure>,
       );
